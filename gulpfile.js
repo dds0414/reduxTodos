@@ -1,6 +1,3 @@
-/**
- * Created by yangbo on 16/12/31.
- */
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
