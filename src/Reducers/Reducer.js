@@ -1,46 +1,45 @@
 /**
- * Created by yangbo on 2016/12/30.
+ * Created by yangbo on 16/12/31.
  */
-import { combineReducers } from 'redux'
-import {ADD_TODO, COMPLETE_TODO, VisibilityFilters, SET_VISIBILITY_FILTER} from '../Action/action'
+import {ADD_TODO, DO_TODO, SHOW_ALL, SET_FILTER} from '../actions/action'
+import { combineReducers } from'redux'
 
-const { SHOW_ALL } = VisibilityFilters;
-
-function visibilityFilter(state=SHOW_ALL, action) {
-    switch (action.type){
-        case SET_VISIBILITY_FILTER:
-            return action.filter;
-        default:
-            return  state
-    }
-}
-
-function todos(state=[], action) {
-    switch (action.type){
-        case COMPLETE_TODO:
-            return [
-                ...state.slice(0, action.index),
-                Object.assign({}, state[action.index], {
-                    do: true
-                }),
-                ...state.slice(action.index + 1)
-            ];
+const todos = (state = [], action) => {
+    switch (action.type) {
         case ADD_TODO:
             return [
                 ...state,
                 {
-                    text:action.text,
-                    do:false
+                    id: action.id,
+                    text: action.text,
+                    do: false
                 }
             ];
+        case DO_TODO:
+            return [
+                ...state.slice(0, action.id),
+                Object.assign({}, state[action.id], {
+                    do: !state[action.id].do
+                }),
+                ...state.slice(action.id + 1)
+            ];
         default:
-            return  state
+            return state;
     }
-}
+};
 
-const todoApp = combineReducers({
-    visibilityFilter,
-    todos
-});
+const filter = (state=SHOW_ALL, action) =>{
+    switch (action.type){
+        case SET_FILTER:
+            return action.filter;
+        default:
+            return state;
+    }
+};
 
-export default todoApp
+const reducers = combineReducers({
+    todos,
+    filter
+})
+
+export default reducers

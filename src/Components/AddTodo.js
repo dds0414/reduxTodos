@@ -1,24 +1,21 @@
 /**
- * Created by yangbo on 2016/12/30.
+ * Created by yangbo on 16/12/31.
  */
-import React, { Component } from 'react'
+import React from 'react'
 
-class AddTodo extends Component {
+const AddTodo = ({onButtonClick}) => {
+    let input;
 
-    handleClick(){
-        let node = this.refs.inputValue;
-        this.props.onAddClick(node.value.trim());
-        node.value = ""
-    }
-
-    render(){
-        return (
-            <div>
-                <input ref="inputValue" type="text"/>
-                <button onClick={()=>this.handleClick()}>add</button>
-            </div>
-        )
-    }
-}
+    return (
+    <div>
+        <input ref={node => {
+            input = node
+        }} type="text" />
+        <button onClick={()=>{
+            onButtonClick(input.value);
+            input.value=""
+        }}>click</button>
+    </div>
+)};
 
 export default AddTodo

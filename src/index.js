@@ -1,5 +1,5 @@
 /**
- * Created by yangbo on 2016/12/30.
+ * Created by yangbo on 16/12/31.
  */
 import React from 'react'
 import { render } from 'react-dom'
@@ -7,19 +7,18 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 
-
-//component
-import App from './Components/App'
-import Reducer from './Reducers/Reducer'
+import App from './components/App'
+import reducers from './reducers/reducer'
 
 
+let RootElement = document.getElementById('root');
+let store = createStore(reducers);
 
-let store = createStore(Reducer);
-let rootElement =  document.getElementById('root');
 
 render(
     <Provider store={store}>
         <App />
     </Provider>
     ,
-    rootElement);
+    RootElement
+);

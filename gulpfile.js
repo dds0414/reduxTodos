@@ -1,5 +1,5 @@
 /**
- * Created by yangbo on 2016/12/30.
+ * Created by yangbo on 16/12/31.
  */
 var gulp = require('gulp');
 var connect = require('gulp-connect');
@@ -37,7 +37,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    gulp.src('./*.html')
+    gulp.src('./src/**/*.html')
         .pipe(connect.reload())
 
 });
@@ -46,7 +46,7 @@ gulp.task('watch', function () {
     livereload.listen();
 
     gulp.watch('./dist/**/*.js', ['js']);
-    gulp.watch('./*.html', ['html']);
+    gulp.watch('./src/**/*.html', ['html']);
     gulp.watch('./src/**/*.js', ['browserify']);
 
 

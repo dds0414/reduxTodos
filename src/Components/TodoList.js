@@ -1,28 +1,27 @@
 /**
- * Created by yangbo on 2016/12/30.
+ * Created by yangbo on 16/12/31.
  */
-import React ,{ Component } from 'react'
+import React from 'react'
 
 
-class TodoList extends Component{
-    render(){
-        return(
-            <div>
-                <ul>
-                    {this.props.todos.map((todo,index)=>
-                        <li
-                            style={{
-                                textDecoration:todo.do ? 'line-through' : 'none',
-                            }}
-                            onClick={()=>this.props.onTodoClick(index)}
-                            key={index}>
-                            {todo.text}
-                        </li>
-                    )}
-                </ul>
-            </div>
-        )
-    }
-}
+const TodoList = ({onItemClick,todos}) => {
+    return (
+    <div>
+        <ul>
+            {todos.map((item,index) =>
+                <li
+                    style={{
+                        textDecoration: item.do ? 'line-through' : 'none',
+                        cursor: item.do ? 'default' : 'pointer'
+                    }}
+                    onClick={()=>onItemClick(index)}
+                    key={index}
+                >
+                    {item.text}
+                </li>
+            )}
+        </ul>
+    </div>
+)};
 
 export default TodoList

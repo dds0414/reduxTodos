@@ -1,37 +1,24 @@
 /**
- * Created by yangbo on 2016/12/30.
+ * Created by yangbo on 16/12/31.
  */
-import React, { Component } from 'react'
+import React from 'react'
+import {SHOW_ALL, SHOW_ACTIVE, SHOW_DO} from '../actions/action'
+import Link from './Link'
 
-class Footer extends Component{
+const Footer = ({filter, onNameClick}) => {
+    return(
+        <div>
+            Show:
+            {" "}
+            <Link filter={filter} onNameClick={onNameClick} show={SHOW_ALL}/>
+            {", "}
+            <Link filter={filter} onNameClick={onNameClick} show={SHOW_ACTIVE}/>
+            {", "}
+            <Link filter={filter} onNameClick={onNameClick} show={SHOW_DO}/>
+        </div>
+    );
+};
 
-    renderFilter(filters, name){
-        if(filters === this.props.filter){
-            return name
-        }
-        return (
-            <a onClick={(e)=> {
-                e.preventDefault();
-                this.props.setFilter(filters)
-            }} href="#">
-                {name}
-            </a>
-        )
-    }
 
-    render(){
-        return (
-            <div>
-                Show:
-                {' '}
-                {this.renderFilter('SHOW_ALL', 'All')}
-                {', '}
-                {this.renderFilter('SHOW_COMPLETED', 'Completed')}
-                {', '}
-                {this.renderFilter('SHOW_ACTIVE', 'Active')}
-            </div>
-        )
-    }
-}
 
 export default Footer
